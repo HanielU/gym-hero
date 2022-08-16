@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./app.js"></script>
+    <script type="module" src="./components/base-header.ts"></script>
+  </head>
+  <body x-data="home">
+    <!-- Create Account "context" -->
+    <div
+      x-data="account"
+      x-effect="watchStore($store.user.details, './home.html')"
+      class="base-wrapper relative"
+    >
+      <base-header></base-header>
+
+      <!-- img wrapper -->
+      <div class="mb-5 flex h-56 w-full justify-end pr-5">
+        <img class="h-full object-fill" src="/herologo.png" alt="" />
+      </div>
+
+      <!-- bottom half -->
+      <div
+        class="absolute bottom-0 left-0 h-[60%] w-full overflow-y-auto rounded-t-3xl bg-white p-8"
+      >
+        <!-- header text -->
+        <h1 class="mb-8 text-3xl text-primary">Login</h1>
+
+        <!-- field -->
+        <div class="form-field">
+          <label class="mb-2 text-primary">Email</label>
+          <input class="input mx-auto w-[90%] bg-[#F5F5F5]" type="email" x-model="email" />
+        </div>
+
+        <div class="form-field">
+          <label class="mb-2 text-primary">Password</label>
+          <input class="input mx-auto w-[90%] bg-[#F5F5F5]" type="password" x-model="password" />
+        </div>
+
+        <div class="form-field">
+          <label class="mb-2 text-primary">Confirm password</label>
+          <input
+            class="input mx-auto w-[90%] bg-[#F5F5F5]"
+            type="password"
+            x-model="confirmPassword"
+          />
+        </div>
+
+        <!-- submit btn -->
+        <button class="btn mx-auto border-none bg-primary normal-case" @click="signup">
+          Sign Up
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

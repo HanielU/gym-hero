@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <script src="./src/app.js" type="module"></script>
+    <title>Vite App</title>
+  </head>
+  <body x-data="home">
+    <!-- Wrapper body -->
+    <div class="base-wrapper p-5 pt-8" x-effect="watchStore($store.user.details)">
+      <!-- img wrapper -->
+      <div class="mb-5 flex h-1/2 w-full justify-center">
+        <img class="h-full object-fill" src="/herologo.png" alt="" />
+      </div>
+
+      <h1 class="mb-10 text-3xl">Welcome</h1>
+
+      <!-- btns -->
+      <div class="mx-auto w-4/5">
+        <button class="btn mb-6 w-full border-none bg-white text-xl normal-case text-primary">
+          Sign In With Google
+        </button>
+
+        <a
+          href="./src/create.html"
+          class="btn mb-5 w-full border-2 border-solid border-white bg-transparent text-xl normal-case"
+        >
+          Create account
+        </a>
+
+        <p class="mx-auto text-center">
+          Already have an account?
+          <a class="inline-block underline" href="/src/login.html">Login</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

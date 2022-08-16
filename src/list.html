@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./app.js"></script>
+    <script type="module" src="./components/footer-nav.ts"></script>
+  </head>
+  <body x-data="workouts">
+    <div
+      x-data="{ footerH: 0 }"
+      x-effect="$nextTick(() => footerH = $refs.footer.children[0].clientHeight )"
+      :style="'--footer-height: ' + footerH + 'px'"
+      class="page-wrap px-5 pt-8"
+    >
+      <!-- page heading -->
+      <h1 class="mb-5 text-center text-3xl font-bold">Tsavsar's Workouts</h1>
+
+      <!-- workouts list -->
+      <template x-for="workout in defaultWorkouts">
+        <div
+          class="mb-8 rounded-lg px-6 py-4 shadow-md shadow-gray-300"
+          x-init="{ measuredBy, time, amount, name } = workout"
+        >
+          <div>
+            <h2 class="text-lg font-medium text-gray-800" x-text="name"></h2>
+            <p x-text="measuredBy == 'amount' ? 'x' + amount : time "></p>
+          </div>
+
+          <!-- Icon section -->
+          <div></div>
+        </div>
+      </template>
+
+      <app-nav x-ref="footer" />
+    </div>
+  </body>
+</html>
