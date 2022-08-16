@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./style.css" />
-    <script type="module" src="./app.js"></script>
+    <script type="module">
+      import Alpine from "alpinejs";
+      import workouts from "./contexts/workouts";
+
+      Alpine.data("workouts", workouts);
+      Alpine.start();
+    </script>
     <script type="module" src="./components/footer-nav.ts"></script>
   </head>
   <body x-data="workouts">
@@ -18,6 +24,11 @@
     >
       <!-- page heading -->
       <h1 class="mb-5 text-center text-3xl font-bold">Tsavsar's Workouts</h1>
+
+      <!-- selected workouts -->
+      <div>
+        <!--  -->
+      </div>
 
       <!-- workouts list -->
       <template x-for="workout in defaultWorkouts">

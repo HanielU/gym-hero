@@ -1,7 +1,4 @@
 import Alpine from "alpinejs";
-import gymcontext from "./contexts/gymdetails";
-import mapcontext from "./contexts/map";
-import workouts from "./contexts/workouts";
 
 Alpine.store("user", {
   init() {
@@ -36,11 +33,4 @@ Alpine.data("home", () => ({
   }
 }));
 
-Alpine.data("map", mapcontext);
-
-Alpine.data("gymdetails", gymcontext);
-
-Alpine.data("workouts", workouts);
-
-window.Alpine = Alpine;
-window.Alpine.start();
+Alpine.start();
