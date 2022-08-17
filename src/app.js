@@ -33,4 +33,6 @@ Alpine.data("home", () => ({
   }
 }));
 
+window.Alpine = Alpine;
+
 Alpine.start();

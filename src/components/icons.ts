@@ -1,19 +1,9 @@
-import { LitElement, html, css } from "lit";
+import { css, html, IconElement } from "$utils/component-utils";
 import { customElement } from "lit/decorators.js";
 
-const iconStyle = css`
-  svg {
-    fill: white;
-    height: 1.5rem;
-    width: 1.5rem;
-  }
-`;
-
 @customElement("list-icon")
-export class ListIcon extends LitElement {
-  static styles = iconStyle;
+export class ListIcon extends IconElement {
   render() {
-    this.style.display = "contents";
     return html`<svg
       xmlns="http://www.w3.org/2000/svg"
       id="Outline"
@@ -32,10 +22,8 @@ export class ListIcon extends LitElement {
 }
 
 @customElement("map-icon")
-export class MapIcon extends LitElement {
-  static styles = iconStyle;
+export class MapIcon extends IconElement {
   render() {
-    this.style.display = "contents";
     return html`<svg
       xmlns="http://www.w3.org/2000/svg"
       id="Layer_1"
@@ -52,10 +40,8 @@ export class MapIcon extends LitElement {
 }
 
 @customElement("home-icon")
-export class HomeIcon extends LitElement {
-  static styles = iconStyle;
+export class HomeIcon extends IconElement {
   render() {
-    this.style.display = "contents";
     return html`<svg
       xmlns="http://www.w3.org/2000/svg"
       id="Outline"
@@ -71,10 +57,8 @@ export class HomeIcon extends LitElement {
 }
 
 @customElement("calculator-icon")
-export class CalculatorIcon extends LitElement {
-  static styles = iconStyle;
+export class CalculatorIcon extends IconElement {
   render() {
-    this.style.display = "contents";
     return html`<svg
       id="Layer_1"
       height="512"
@@ -91,10 +75,8 @@ export class CalculatorIcon extends LitElement {
 }
 
 @customElement("dumbell-icon")
-export class DumbellIcon extends LitElement {
-  static styles = iconStyle;
+export class DumbellIcon extends IconElement {
   render() {
-    this.style.display = "contents";
     return html`<svg
       class="white"
       id="Layer_1"
@@ -107,6 +89,71 @@ export class DumbellIcon extends LitElement {
       <path
         d="m22.942 6.837-2.182-2.183.947-.947a1 1 0 1 0 -1.414-1.414l-.947.947-2.183-2.182a3.7 3.7 0 0 0 -5.105 0 3.609 3.609 0 0 0 0 5.106l2.182 2.182-5.894 5.894-2.183-2.182a3.7 3.7 0 0 0 -5.105 0 3.609 3.609 0 0 0 0 5.106l2.182 2.182-.947.947a1 1 0 1 0 1.414 1.414l.947-.947 2.183 2.182a3.609 3.609 0 0 0 5.105 0 3.608 3.608 0 0 0 0-5.105l-2.182-2.182 5.9-5.895 2.182 2.182a3.609 3.609 0 0 0 5.105 0 3.608 3.608 0 0 0 0-5.105zm-11.942 13.553a1.6 1.6 0 0 1 -.472 1.138 1.647 1.647 0 0 1 -2.277 0l-5.779-5.779a1.61 1.61 0 1 1 2.277-2.277l5.779 5.779a1.6 1.6 0 0 1 .472 1.139zm10.528-9.862a1.647 1.647 0 0 1 -2.277 0l-5.779-5.779a1.61 1.61 0 1 1 2.277-2.277l5.779 5.779a1.609 1.609 0 0 1 0 2.277z"
       />
+    </svg>`;
+  }
+}
+
+@customElement("cross-icon")
+export class CrossIcon extends IconElement {
+  static styles = css`
+    svg {
+      fill: inherit;
+      height: 1em;
+      width: 1em;
+      transform: rotate(180deg);
+    }
+  `;
+  render() {
+    return html`<svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="1.1"
+      id="Capa_1"
+      x="0px"
+      y="0px"
+      viewBox="0 0 511.991 511.991"
+      style="enable-background:new 0 0 511.991 511.991;"
+      xml:space="preserve"
+      width="512"
+      height="512"
+    >
+      <g>
+        <path
+          d="M286.161,255.867L505.745,36.283c8.185-8.474,7.951-21.98-0.523-30.165c-8.267-7.985-21.375-7.985-29.642,0   L255.995,225.702L36.411,6.118c-8.475-8.185-21.98-7.95-30.165,0.524c-7.985,8.267-7.985,21.374,0,29.641L225.83,255.867   L6.246,475.451c-8.328,8.331-8.328,21.835,0,30.165l0,0c8.331,8.328,21.835,8.328,30.165,0l219.584-219.584l219.584,219.584   c8.331,8.328,21.835,8.328,30.165,0l0,0c8.328-8.331,8.328-21.835,0-30.165L286.161,255.867z"
+        />
+      </g>
+    </svg>`;
+  }
+}
+
+@customElement("plus-icon")
+export class PlusIcon extends IconElement {
+  static styles = css`
+    svg {
+      fill: inherit;
+      height: 1em;
+      width: 1em;
+    }
+  `;
+  render() {
+    return html`<svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      version="1.1"
+      id="Capa_1"
+      x="0px"
+      y="0px"
+      viewBox="0 0 512 512"
+      style="enable-background:new 0 0 512 512;"
+      xml:space="preserve"
+      width="512"
+      height="512"
+    >
+      <g>
+        <path
+          d="M490.667,234.667H277.333V21.333C277.333,9.551,267.782,0,256,0c-11.782,0-21.333,9.551-21.333,21.333v213.333H21.333   C9.551,234.667,0,244.218,0,256c0,11.782,9.551,21.333,21.333,21.333h213.333v213.333c0,11.782,9.551,21.333,21.333,21.333   c11.782,0,21.333-9.551,21.333-21.333V277.333h213.333c11.782,0,21.333-9.551,21.333-21.333   C512,244.218,502.449,234.667,490.667,234.667z"
+        />
+      </g>
     </svg>`;
   }
 }

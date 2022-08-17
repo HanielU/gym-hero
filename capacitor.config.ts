@@ -8,7 +8,8 @@ const config: CapacitorConfig = {
 
   // remove when building for production
   server: {
-    url: "http://192.168.0.182:3000",
+    // url: "http://192.168.0.182:3000", // hynetflex 5ghz
+    url: "http://192.168.74.233:3000", // redmi hotspot
     cleartext: true
   }
 };

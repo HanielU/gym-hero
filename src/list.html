@@ -11,6 +11,7 @@
       import workouts from "./contexts/workouts";
 
       Alpine.data("workouts", workouts);
+      window.Alpine = Alpine;
       Alpine.start();
     </script>
     <script type="module" src="./components/footer-nav.ts"></script>
@@ -20,21 +21,62 @@
       x-data="{ footerH: 0 }"
       x-effect="$nextTick(() => footerH = $refs.footer.children[0].clientHeight )"
       :style="'--footer-height: ' + footerH + 'px'"
-      class="page-wrap px-5 pt-8"
+      class="page-wrap px-8 pt-8"
     >
       <!-- page heading -->
       <h1 class="mb-5 text-center text-3xl font-bold">Tsavsar's Workouts</h1>
 
       <!-- selected workouts -->
-      <div>
-        <!--  -->
+      <div class="mb-6 max-h-64 w-full overflow-y-scroll border-b border-solid px-1">
+        <!-- show if there are no selected workouts -->
+        <h1 class="p-3 text-gray-500" x-show="selectedWorkouts.length == 0">
+          Nothing selected yet
+        </h1>
+
+        <template x-for="{ measuredBy, time, amount, name, id } in selectedWorkouts" :key="id">
+          <div
+            class="mb-8 flex items-end justify-between rounded-lg px-6 py-4 shadow-md shadow-gray-300"
+          >
+            <div>
+              <h2 class="text-lg font-medium text-gray-800" x-text="name"></h2>
+              <p x-text="measuredBy == 'amount' ? 'x' + amount : time "></p>
+            </div>
+
+            <!-- Icon section -->
+            <div
+              class="flex rounded-full fill-blue-600 p-2"
+              @click="selectedWorkouts = selectedWorkouts.filter(wkt => wkt.id !== id)"
+            >
+              <cross-icon />
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <!-- Custom Workouts -->
+      <div
+        x-data="{ workoutName: '', reps: 0, sets: 0, time: '' }"
+        class="mb-8 w-full rounded-lg px-6 py-4 shadow-md shadow-gray-300"
+      >
+        <input type="text" x-model="workoutName" />
+
+        <div class="flex w-full items-center justify-between">
+          <input class="w-20 bg-slate-300 p-1" type="number" x-model="reps" placeholder="Reps" />
+          <input class="w-20 bg-slate-300 p-1" type="number" x-model="sets" placeholder="Sets" />
+          <input class="w-20 bg-slate-300 p-1" type="text" x-model="time" placeholder="Time" />
+          <button>
+            <plus-icon />
+          </button>
+        </div>
       </div>
 
       <!-- workouts list -->
-      <template x-for="workout in defaultWorkouts">
+      <template
+        x-for="({ measuredBy, time, amount, name, id }, index) in defaultWorkouts"
+        :key="id"
+      >
         <div
-          class="mb-8 rounded-lg px-6 py-4 shadow-md shadow-gray-300"
-          x-init="{ measuredBy, time, amount, name } = workout"
+          class="mb-8 flex items-end justify-between rounded-lg px-6 py-4 shadow-md shadow-gray-300"
         >
           <div>
             <h2 class="text-lg font-medium text-gray-800" x-text="name"></h2>
@@ -42,7 +84,12 @@
           </div>
 
           <!-- Icon section -->
-          <div></div>
+          <div
+            class="flex rounded-full fill-blue-600 p-2"
+            @click="selectedWorkouts.push({ ...defaultWorkouts[index], id: randomId() })"
+          >
+            <plus-icon />
+          </div>
         </div>
       </template>
 
