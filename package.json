@@ -11,6 +11,7 @@
   "devDependencies": {
     "@capacitor/cli": "^4.0.1",
     "autoprefixer": "^10.4.8",
+    "eslint": "^8.22.0",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
@@ -27,5 +28,6 @@
     "alpinejs": "^3.10.3",
     "lit": "^2.3.0",
     "mapbox-gl": "^2.9.2"
-  }
+  },
+  "packageManager": "yarn@3.2.2"
 }

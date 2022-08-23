@@ -1,11 +1,9 @@
-import { Geolocation } from "@capacitor/geolocation";
-import { Map, Marker, NavigationControl } from "mapbox-gl";
-
 export default () => ({
   MAPBOX_TOKEN:
     "pk.eyJ1IjoidmlydXNzYW1hIiwiYSI6ImNsM2lrMmkydDAxYzYzY3V3N29iYmRlM20ifQ.1am40GGQMgv5YmwIrtllzg",
 
   async init() {
+    const { Geolocation } = await import("@capacitor/geolocation");
     try {
       const coordinates = await Geolocation.getCurrentPosition({ enableHighAccuracy: true });
       this.successlocation(coordinates);
@@ -16,7 +14,10 @@ export default () => ({
     this.setupMap(this.currentPos);
   },
 
-  setupMap(center) {
+  async setupMap(center) {
+    await import("mapbox-gl/dist/mapbox-gl.css");
+    const { Map, NavigationControl } = await import("mapbox-gl");
+
     this.map = new Map({
       accessToken: this.MAPBOX_TOKEN,
       container: "map",
@@ -25,7 +26,7 @@ export default () => ({
       zoom: 15
     });
 
-    this.addMarker(center);
+    await this.addMarker(center);
     this.map.addControl(new NavigationControl());
 
     this.map.on("load", () => {
@@ -63,7 +64,7 @@ export default () => ({
     // only the end or destination will change
 
     this.removeMarkerTrace();
-    this.marker = this.addMarker(destinationCoords);
+    this.marker = await this.addMarker(destinationCoords);
 
     // for transitioning to the location
     this.map.fitBounds([destinationCoords, this.currentPos], {
@@ -122,7 +123,8 @@ export default () => ({
     this.currentPos = [position.coords.longitude, position.coords.latitude];
   },
 
-  addMarker(position) {
+  async addMarker(position) {
+    const { Marker } = await import("mapbox-gl");
     return new Marker().setLngLat(position).addTo(this.map);
   },
 
